@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!--MATERIAL ICONS/GOOGLE FONTS-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <form class="p-4 bg-light rounded w-75 m-auto">
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
+                        <input type="number" class="form-control" placeholder="author_id" min="0" v-model="author_id"/>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 mb-2">
+                        <input type="text" class="form-control" placeholder="title" v-model="title"/>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <input type="text" class="form-control" placeholder="body" v-model="body"/>
+                    </div>
+                    <div class="col-12">
+                        <input type="button" class="form-control btn btn-primary" value="Add" v-if="isAdded" @click="createBooks"/>
+                    </div>
+                    <div class="col-12">
+                        <input type="button" class="form-control btn btn-primary" value="Update" v-if="isUpdated" @click="updateBook"/>
+                    </div>
+                </div>
+            </form>
+            <div class="card" v-for="(book, index) in books" :key="index">
+                <div class="card-title">
+                    <h1> {{ book.title }} </h1>
+                    <div class="button">
+                        <span class="material-icons" @click="deleteBook(book)"> delete </span>
+                        <span class="material-icons" @click="editBook(book)"> edit </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p> {{ book.body }} </p>
+                </div>
+                <div class="card-footer">
+                    <p> {{ book.created_at }} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/app.js"></script>
+
+</html>
